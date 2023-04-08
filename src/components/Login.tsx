@@ -1,4 +1,8 @@
-import { signInWithPopup } from "firebase/auth";
+import {
+  browserLocalPersistence,
+  setPersistence,
+  signInWithPopup,
+} from "firebase/auth";
 import { auth, googleProvider } from "../firebase";
 import { useNavigate } from "react-router-dom";
 
@@ -8,16 +12,17 @@ type Props = {
 
 const Login = (props: Props) => {
   const { setIsAuth } = props;
-  const navifate = useNavigate();
-  const loginWithGoogle = () => {
-    signInWithPopup(auth, googleProvider)
-      .then((result) => {
-        localStorage.setItem("user", JSON.stringify(result.user));
-        setIsAuth(true);
-        navifate("/");
-      })
-      .catch((error) => {})
-      .finally(() => {});
+  const navigate = useNavigate();
+
+  const loginWithGoogle = async () => {
+    try {
+      await setPersistence(auth, browserLocalPersistence);
+      await signInWithPopup(auth, googleProvider);
+      setIsAuth(true);
+      navigate("/");
+    } catch (error) {
+      console.log("An error occurred during authentication:", error);
+    }
   };
 
   return (

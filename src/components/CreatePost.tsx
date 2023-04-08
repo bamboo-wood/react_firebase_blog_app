@@ -1,14 +1,20 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import "./CreatePost.css";
 import { addDoc, collection } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { useNavigate } from "react-router-dom";
 
 const CreatePost = () => {
-  const [title, setTitle] = React.useState<string>("");
-  const [postText, setPostText] = React.useState<string>("");
+  const [title, setTitle] = useState<string>("");
+  const [postText, setPostText] = useState<string>("");
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!auth.currentUser) {
+      navigate("/login");
+    }
+  }, [navigate]);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);

@@ -19,10 +19,6 @@ const Navbar = ({ isAuth }: Props) => {
         <FontAwesomeIcon icon={faHome} />
         Home
       </Link>
-      <Link to={"/createpost"}>
-        <FontAwesomeIcon icon={faFilePen} />
-        Post
-      </Link>
 
       {!isAuth ? (
         <Link to={"/login"}>
@@ -30,10 +26,16 @@ const Navbar = ({ isAuth }: Props) => {
           Login
         </Link>
       ) : (
-        <Link to={"/logout"}>
-          <FontAwesomeIcon icon={faArrowRightToBracket} />
-          Logout
-        </Link>
+        <>
+          <Link to={"/createpost"}>
+            <FontAwesomeIcon icon={faFilePen} />
+            Post
+          </Link>
+          <Link to={"/logout"}>
+            <FontAwesomeIcon icon={faArrowRightToBracket} />
+            Logout
+          </Link>
+        </>
       )}
     </nav>
   );
