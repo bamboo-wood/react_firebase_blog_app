@@ -1,0 +1,15 @@
+nav {
+  background-color: #d1d1a3;
+  color: #fff;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  column-gap: 30px;
+  padding: 0 1rem;
+  height: 4rem;
+}
+
+nav a {
+  color: #000;
+  text-decoration: none;
+}
