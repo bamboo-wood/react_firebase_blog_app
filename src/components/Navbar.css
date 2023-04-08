@@ -2,7 +2,7 @@ nav {
   background-color: #d1d1a3;
   color: #fff;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
   column-gap: 30px;
   padding: 0 1rem;
@@ -12,4 +12,8 @@ nav {
 nav a {
   color: #000;
   text-decoration: none;
+}
+
+nav a svg {
+  margin-right: 5px;
 }
